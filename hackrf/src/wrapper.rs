@@ -40,6 +40,11 @@ impl Wrapper {
         hackrf_sys::hackrf_device_list_open(list, idx, device)
     }
 
+    pub unsafe fn hackrf_reset(device: *const hackrf_sys::Device) -> hackrf_sys::Error {
+        debug!("hackrf_reset({:?})", device);
+        hackrf_sys::hackrf_reset(device)
+    }
+
     pub unsafe fn hackrf_set_freq(device: *const hackrf_sys::Device, freq_hz: u64) -> hackrf_sys::Error {
         debug!("hackrf_set_freq({:?}, {:?})", device, freq_hz);
         hackrf_sys::hackrf_set_freq(device, freq_hz)

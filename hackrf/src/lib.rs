@@ -107,6 +107,15 @@ impl Device {
         }
     }
 
+    pub fn reset(&self) -> Result<(), hackrf_sys::Error> {
+        unsafe {
+            match Wrapper::hackrf_reset(self.device) {
+                hackrf_sys::Error::Success => Ok(()),
+                err => Result::Err(err)
+            }
+        }
+    }
+
     pub fn set_frequency(&self, freq_hz: u64) -> Result<(), hackrf_sys::Error> {
         unsafe {
             match Wrapper::hackrf_set_freq(self.device, freq_hz) {
