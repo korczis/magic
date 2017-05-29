@@ -12,7 +12,7 @@ $ hackrf list
   {
     "index": 0,
     "model": "One",
-    "api": {
+    "version": {
       "major": 1,
       "minor": 2
     },
