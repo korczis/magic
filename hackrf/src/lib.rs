@@ -64,8 +64,6 @@ impl HackRF {
                 };
                 Wrapper::hackrf_board_partid_serialno_read(device, &mut read_part);
 
-                println!("{:?}", read_part);
-
                 res.push(Device {
                     index: *(*raw_devices).usb_device_index.offset(i as isize) as i32,
                     model: *(*raw_devices).usb_board_ids.offset(i as isize),
