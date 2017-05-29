@@ -40,6 +40,16 @@ impl Wrapper {
         hackrf_sys::hackrf_device_list_open(list, idx, device)
     }
 
+    pub unsafe fn hackrf_set_freq(device: *const hackrf_sys::Device, freq_hz: u64) -> hackrf_sys::Error {
+        debug!("hackrf_set_freq({:?}, {:?})", device, freq_hz);
+        hackrf_sys::hackrf_set_freq(device, freq_hz)
+    }
+
+    pub unsafe fn hackrf_set_sample_rate(device: *const hackrf_sys::Device, freq_hz: f64) -> hackrf_sys::Error {
+        debug!("hackrf_set_sample_rate({:?}, {:?})", device, freq_hz);
+        hackrf_sys::hackrf_set_sample_rate(device, freq_hz)
+    }
+
     pub unsafe fn hackrf_usb_api_version_read(device: *const hackrf_sys::Device, version: *mut u16) -> hackrf_sys::Error {
         debug!("hackrf_usb_api_version_read({:?}, {:?})", device, version);
         hackrf_sys::hackrf_usb_api_version_read(device, version)

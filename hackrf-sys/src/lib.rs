@@ -105,6 +105,9 @@ extern "C" {
     pub fn hackrf_device_list_free(list: *mut DeviceList);
     pub fn hackrf_device_list_open(list: *mut DeviceList, idx: c_int, device: *mut *mut Device) -> Error;
 
+    pub fn hackrf_set_freq(device: *const Device, freq_hz: u64) -> Error;
+    pub fn hackrf_set_sample_rate(device: *const Device, freq_hz: f64) -> Error;
+
     pub fn hackrf_usb_api_version_read(device: *const Device, version: *mut u16) -> Error;
     pub fn hackrf_version_string_read(device: *const Device, version: *mut c_char, length: u8) -> Error;
 }

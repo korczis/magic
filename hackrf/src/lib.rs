@@ -103,6 +103,18 @@ impl Device {
         res
     }
 
+    pub fn set_frequency(&self, freq_hz: u64) -> hackrf_sys::Error {
+        unsafe {
+            Wrapper::hackrf_set_freq(self.device, freq_hz)
+        }
+    }
+
+    pub fn set_sample_rate(&self, freq_hz: f64) -> hackrf_sys::Error {
+        unsafe {
+            Wrapper::hackrf_set_sample_rate(self.device, freq_hz)
+        }
+    }
+
     pub fn version(&self) -> ApiVersion {
         unsafe {
             let mut version: u16 = 0;
