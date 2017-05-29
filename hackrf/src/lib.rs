@@ -88,41 +88,55 @@ impl Device {
         }
     }
 
-    pub unsafe fn firmware(&self) -> String {
+    pub unsafe fn firmware(&self) -> Result<String, hackrf_sys::Error> {
         let mut buffer: [c_char; 256] = [0; 256];
-        Wrapper::hackrf_version_string_read(self.device, buffer.as_mut_ptr(), 255);
-        CStr::from_ptr(buffer.as_ptr()).to_string_lossy().into_owned()
+        match Wrapper::hackrf_version_string_read(self.device, buffer.as_mut_ptr(), 255) {
+            hackrf_sys::Error::Success => Ok(CStr::from_ptr(buffer.as_ptr()).to_string_lossy().into_owned()),
+            err => Result::Err(err)
+        }
     }
 
-    pub unsafe fn serial(&self) -> hackrf_sys::ReadPartIdSerialno {
+    pub unsafe fn serial(&self) -> Result<hackrf_sys::ReadPartIdSerialno, hackrf_sys::Error> {
         let mut res = hackrf_sys::ReadPartIdSerialno {
             part_id: [0; 2],
             serial_no: [0; 4]
         };
-        Wrapper::hackrf_board_partid_serialno_read(self.device, &mut res);
-        res
-    }
-
-    pub fn set_frequency(&self, freq_hz: u64) -> hackrf_sys::Error {
-        unsafe {
-            Wrapper::hackrf_set_freq(self.device, freq_hz)
+        match Wrapper::hackrf_board_partid_serialno_read(self.device, &mut res) {
+            hackrf_sys::Error::Success => Ok(res),
+            err => Result::Err(err)
         }
     }
 
-    pub fn set_sample_rate(&self, freq_hz: f64) -> hackrf_sys::Error {
+    pub fn set_frequency(&self, freq_hz: u64) -> Result<(), hackrf_sys::Error> {
         unsafe {
-            Wrapper::hackrf_set_sample_rate(self.device, freq_hz)
+            match Wrapper::hackrf_set_freq(self.device, freq_hz) {
+                hackrf_sys::Error::Success => Ok(()),
+                err => Result::Err(err)
+            }
         }
     }
 
-    pub fn version(&self) -> ApiVersion {
+    pub fn set_sample_rate(&self, freq_hz: f64) -> Result<(), hackrf_sys::Error> {
+        unsafe {
+            match Wrapper::hackrf_set_sample_rate(self.device, freq_hz) {
+                hackrf_sys::Error::Success => Ok(()),
+                err => Result::Err(err)
+            }
+        }
+    }
+
+    pub fn version(&self) -> Result<ApiVersion, hackrf_sys::Error> {
         unsafe {
             let mut version: u16 = 0;
-            Wrapper::hackrf_usb_api_version_read(self.device, &mut version);
-            let version_parts: *const u8 = &version as *const _ as *const u8;
-            ApiVersion {
-                major: *version_parts.offset(1),
-                minor: *version_parts.offset(0)
+            match Wrapper::hackrf_usb_api_version_read(self.device, &mut version) {
+                hackrf_sys::Error::Success => {
+                    let version_parts: *const u8 = &version as *const _ as *const u8;
+                    Ok(ApiVersion {
+                        major: *version_parts.offset(1),
+                        minor: *version_parts.offset(0)
+                    })
+                },
+                err => Result::Err(err)
             }
         }
     }
@@ -145,9 +159,9 @@ impl Serialize for Device {
 
             map.serialize_entry("index", &self.index).unwrap();
             map.serialize_entry("model", &self.model).unwrap();
-            map.serialize_entry("version", &self.version()).unwrap();
-            map.serialize_entry("firmware", &self.firmware()).unwrap();
-            map.serialize_entry("serial", &self.serial()).unwrap();
+            map.serialize_entry("version", &self.version().unwrap()).unwrap();
+            map.serialize_entry("firmware", &self.firmware().unwrap()).unwrap();
+            map.serialize_entry("serial", &self.serial().unwrap()).unwrap();
             map.serialize_entry("serial_string", &self.serial_string).unwrap();
 
             map.end()
