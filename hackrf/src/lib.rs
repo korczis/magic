@@ -59,11 +59,11 @@ impl Drop for HackRF {
     }
 }
 
-#[derive(Serialize, Deserialize)]
-pub struct ApiVersion {
-    pub major: u8,
-    pub minor: u8
-}
+//#[derive(Serialize, Deserialize)]
+//pub struct ApiVersion {
+//    pub major: u8,
+//    pub minor: u8
+//}
 
 pub struct Device {
     index: i32,
@@ -134,16 +134,13 @@ impl Device {
         }
     }
 
-    pub fn version(&self) -> Result<ApiVersion, hackrf_sys::Error> {
+    pub fn version(&self) -> Result<(u8, u8), hackrf_sys::Error> {
         unsafe {
             let mut version: u16 = 0;
             match Wrapper::hackrf_usb_api_version_read(self.device, &mut version) {
                 hackrf_sys::Error::Success => {
                     let version_parts: *const u8 = &version as *const _ as *const u8;
-                    Ok(ApiVersion {
-                        major: *version_parts.offset(1),
-                        minor: *version_parts.offset(0)
-                    })
+                    Ok((*version_parts.offset(1), *version_parts.offset(0)))
                 },
                 err => Result::Err(err)
             }
