@@ -3,7 +3,8 @@ use super::super::*;
 pub fn main() {
     let _hrf = match HackRF::init() {
         Ok(hrf) => hrf,
-        _ => {
+        Err(err) => {
+            println!("Unable to init HackRF, reason: {:?}", err);
             return;
         }
     };

@@ -169,17 +169,11 @@ impl Serialize for Device {
     }
 }
 
-pub struct DeviceList {
+struct DeviceList {
     list: *mut hackrf_sys::DeviceList
 }
 
 impl DeviceList {
-    pub fn from(list: *mut hackrf_sys::DeviceList) -> DeviceList {
-      DeviceList {
-          list: list
-      }
-    }
-
     pub unsafe fn as_raw(&mut self) -> *mut hackrf_sys::DeviceList {
         self.list
     }
