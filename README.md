@@ -25,6 +25,35 @@ SUBCOMMANDS:
     reset    Reset device
 ```
 
+### hackrf info
+
+
+```
+$ hackrf info 0
+{
+  "index": 0,
+  "model": "One",
+  "version": [
+    1,
+    2
+  ],
+  "firmware": "2017.02.1",
+  "serial": {
+    "part_id": [
+      2684406588,
+      6308698
+    ],
+    "serial_no": [
+      0,
+      0,
+      2425906376,
+      741960399
+    ]
+  },
+  "serial_string": "0000000000000000909864c82c396acf"
+}
+```
+
 ### hackrf list
 
 List available HackRF devices
@@ -55,4 +84,11 @@ $ hackrf list
     "serial_string": "0000000000000000909864c82c396acf"
   }
 ]
+```
+
+### hackrf reset 
+
+```
+$ hackrf reset 0
+Device 0 was successfully reset
 ```
