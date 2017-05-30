@@ -1,5 +1,13 @@
 # hackrf-rust
 
+## Getting started
+
+```
+git clone https://github.com/korczis/hackrf-rust.git
+cd hackrf-rust/hackrf
+cargo install
+```
+
 ## Usage 
 
 ### Show global help
