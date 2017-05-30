@@ -1,12 +1,10 @@
 #[macro_use]
 extern crate log;
+extern crate clap;
 extern crate env_logger;
 extern crate hackrf_sys;
 extern crate serde;
 extern crate serde_json;
-
-#[macro_use]
-extern crate serde_derive;
 
 use serde::ser::{Serialize, Serializer, SerializeMap};
 

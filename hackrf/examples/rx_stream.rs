@@ -18,8 +18,6 @@ fn main() {
 
     let device = &mut devices[0];
 
-    // device.reset().unwrap();
-
     if let Err(err) = device.set_sample_rate(2_000_000 as f64) {
         println!("Unable to set_sample_rate, reason: {:?}", err);
         return;

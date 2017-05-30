@@ -27,6 +27,12 @@ pub fn main() {
             .about("Show information"))
         .subcommand(SubCommand::with_name("list")
             .about("List devices"))
+        .subcommand(SubCommand::with_name("reset")
+            .about("Reset device")
+            .arg(Arg::with_name("device")
+                .help("Device to reset")
+                .index(1)
+                .required(true)))
         .get_matches();
 
     match matches.occurrences_of("verbose") {
@@ -44,5 +50,9 @@ pub fn main() {
 
     if matches.is_present("list") {
         command::list::main();
+    }
+
+    if matches.is_present("reset") {
+        command::reset::main(&matches.subcommand_matches("reset").unwrap());
     }
 }
