@@ -24,7 +24,11 @@ pub fn main() {
             .long("verbose")
             .multiple(true))
         .subcommand(SubCommand::with_name("info")
-            .about("Show information"))
+            .about("Show information")
+            .arg(Arg::with_name("device")
+                .help("Device to show info about")
+                .index(1)
+                .required(true)))
         .subcommand(SubCommand::with_name("list")
             .about("List devices"))
         .subcommand(SubCommand::with_name("reset")
@@ -45,7 +49,7 @@ pub fn main() {
     env_logger::init().unwrap();
 
     if matches.is_present("info") {
-        command::info::main();
+        command::info::main(&matches.subcommand_matches("info").unwrap());
     }
 
     if matches.is_present("list") {

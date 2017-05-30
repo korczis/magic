@@ -28,5 +28,8 @@ pub fn main(args: &ArgMatches) {
     }
 
     let device = &devices[index];
-    device.reset();
+    match device.reset() {
+        Ok(_) => println!("Device {:?} was successfully reset", index),
+        Err(err) => println!("Unable to reset device, reason: {:?}", err)
+    }
 }
