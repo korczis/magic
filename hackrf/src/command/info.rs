@@ -3,6 +3,8 @@ use clap::ArgMatches;
 use super::super::*;
 
 pub fn main(args: &ArgMatches) {
+    // shared::get_device();
+
     let _hrf = match HackRF::init() {
         Ok(hrf) => hrf,
         Err(err) => {

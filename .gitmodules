@@ -1,0 +1,3 @@
+[submodule "hackrf-raw"]
+	path = hackrf-raw
+	url = https://github.com/mossmann/hackrf.git

@@ -1,6 +1,6 @@
 [package]
 name = "hackrf"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["Tomas Korcak <korczis@gmail.com>"]
 
 description = "HackRF wrapper"
@@ -21,14 +21,17 @@ keywords = ["hackrf"]
 license = "MIT"
 
 [dependencies]
+afl = ">= 0.1.5"
 clap = ">= 2.18"
 env_logger = ">= 0.4"
 hackrf-sys = { path = "../hackrf-sys" }
-libc = ">= 0.2.16"
-log = ">= 0.3.6"
-serde = "1.0.8"
-serde_derive = "1.0.8"
-serde_json = "1.0.2"
+libc = ">= 0.2"
+log = ">= 0.3"
+quickcheck = ">= 0.4"
+protobuf = "1.2"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
 
 [lib]
 name = "hackrf"

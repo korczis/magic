@@ -9,10 +9,11 @@ extern crate serde_json;
 use serde::ser::{Serialize, Serializer, SerializeMap};
 
 use std::ffi::{CStr};
-use std::os::raw::{c_char};
+use std::os::raw::{c_char, c_void};
 use std::ptr;
 
 pub mod command;
+pub mod shared;
 pub mod wrapper;
 
 pub struct HackRF {}
@@ -69,6 +70,9 @@ pub struct Device {
     serial_string: String,
     device: *mut hackrf_sys::Device
 }
+
+unsafe impl Send for Device {}
+unsafe impl Sync for Device {}
 
 impl Device {
     pub unsafe fn open(list: *mut hackrf_sys::DeviceList, index: i32) -> Device {
@@ -127,6 +131,49 @@ impl Device {
         unsafe {
             match Wrapper::hackrf_set_sample_rate(self.device, freq_hz) {
                 hackrf_sys::Error::Success => Ok(()),
+                err => Result::Err(err)
+            }
+        }
+    }
+
+    pub fn start_rx(&self, callback: hackrf_sys::SampleBlockCallback, rx_ctx: *mut c_void) -> Result<(), hackrf_sys::Error> {
+        unsafe {
+            match Wrapper::hackrf_start_rx(self.device, callback, rx_ctx) {
+                hackrf_sys::Error::Success => {
+                    Ok(())
+                },
+                err => Result::Err(err)
+            }
+        }
+    }
+    pub fn start_tx(&self, callback: hackrf_sys::SampleBlockCallback, tx_ctx: *mut c_void) -> Result<(), hackrf_sys::Error> {
+        unsafe {
+            match Wrapper::hackrf_start_tx(self.device, callback, tx_ctx) {
+                hackrf_sys::Error::Success => {
+                    Ok(())
+                },
+                err => Result::Err(err)
+            }
+        }
+    }
+
+    pub fn stop_rx(&self) -> Result<(), hackrf_sys::Error> {
+        unsafe {
+            match Wrapper::hackrf_stop_rx(self.device) {
+                hackrf_sys::Error::Success => {
+                    Ok(())
+                },
+                err => Result::Err(err)
+            }
+        }
+    }
+
+    pub fn stop_tx(&self) -> Result<(), hackrf_sys::Error> {
+        unsafe {
+            match Wrapper::hackrf_stop_tx(self.device) {
+                hackrf_sys::Error::Success => {
+                    Ok(())
+                },
                 err => Result::Err(err)
             }
         }

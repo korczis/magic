@@ -1,6 +1,6 @@
 extern crate hackrf_sys;
 
-use std::os::raw::{c_char, c_int};
+use std::os::raw::{c_char, c_int, c_void};
 
 pub struct Wrapper {}
 
@@ -53,6 +53,26 @@ impl Wrapper {
     pub unsafe fn hackrf_set_sample_rate(device: *const hackrf_sys::Device, freq_hz: f64) -> hackrf_sys::Error {
         debug!("hackrf_set_sample_rate({:?}, {:?})", device, freq_hz);
         hackrf_sys::hackrf_set_sample_rate(device, freq_hz)
+    }
+
+    pub unsafe fn hackrf_start_rx(device: *mut hackrf_sys::Device, callback: hackrf_sys::SampleBlockCallback, rx_ctx: *mut c_void) -> hackrf_sys::Error {
+        debug!("hackrf_start_tx({:?}, {:?}, {:?})", device, callback, rx_ctx);
+        hackrf_sys::hackrf_start_rx(device, callback, rx_ctx)
+    }
+
+    pub unsafe fn hackrf_start_tx(device: *mut hackrf_sys::Device, callback: hackrf_sys::SampleBlockCallback, tx_ctx: *mut c_void) -> hackrf_sys::Error {
+        debug!("hackrf_start_tx({:?}, {:?}, {:?})", device, callback, tx_ctx);
+        hackrf_sys::hackrf_start_tx(device, callback, tx_ctx)
+    }
+
+    pub unsafe fn hackrf_stop_rx(device: *mut hackrf_sys::Device) -> hackrf_sys::Error {
+        debug!("hackrf_stop_rx({:?})", device);
+        hackrf_sys::hackrf_stop_rx(device)
+    }
+
+    pub unsafe fn hackrf_stop_tx(device: *mut hackrf_sys::Device) -> hackrf_sys::Error {
+        debug!("hackrf_stop_tx({:?})", device);
+        hackrf_sys::hackrf_stop_tx(device)
     }
 
     pub unsafe fn hackrf_usb_api_version_read(device: *const hackrf_sys::Device, version: *mut u16) -> hackrf_sys::Error {
