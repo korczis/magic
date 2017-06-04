@@ -1,5 +1,5 @@
-use hackrf_sys;
+use sdr_hackrf_sys;
 
-pub fn get_device() -> Result<hackrf_sys::Device, hackrf_sys::Error> {
-    Err(hackrf_sys::Error::Success)
+pub fn get_device() -> Result<sdr_hackrf_sys::Device, sdr_hackrf_sys::Error> {
+    Err(sdr_hackrf_sys::Error::Success)
 }

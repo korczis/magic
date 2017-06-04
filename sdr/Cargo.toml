@@ -1,0 +1,7 @@
+[package]
+name = "sdr"
+version = "0.1.0"
+authors = ["Tomas Korcak <korczis@gmail.com>"]
+
+[dependencies]
+sdr_hackrf = { path = "../hackrf"}

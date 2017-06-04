@@ -1,8 +1,8 @@
 #[macro_use]
 extern crate log;
 
-extern crate hackrf;
-extern crate hackrf_sys;
+extern crate sdr_hackrf;
+extern crate sdr_hackrf_sys;
 extern crate env_logger;
 
 use std::os::raw::{c_int};
@@ -10,7 +10,7 @@ use std::ptr;
 use std::slice;
 use std::thread;
 
-use hackrf::*;
+use sdr_hackrf::*;
 
 fn main() {
     env_logger::init().unwrap();
@@ -43,7 +43,7 @@ fn main() {
             return;
         }
 
-        unsafe extern "C" fn rx_callback(transfer: *mut hackrf_sys::Transfer) -> c_int {
+        unsafe extern "C" fn rx_callback(transfer: *mut sdr_hackrf_sys::Transfer) -> c_int {
             debug!("{:?}", *transfer);
 
             let slice = slice::from_raw_parts((*transfer).buffer, (*transfer).valid_length as usize);

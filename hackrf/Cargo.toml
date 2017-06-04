@@ -1,5 +1,5 @@
 [package]
-name = "hackrf"
+name = "sdr_hackrf"
 version = "0.1.0"
 authors = ["Tomas Korcak <korczis@gmail.com>"]
 
@@ -24,7 +24,7 @@ license = "MIT"
 afl = ">= 0.1.5"
 clap = ">= 2.18"
 env_logger = ">= 0.4"
-hackrf-sys = { path = "../hackrf-sys" }
+sdr_hackrf_sys = { path = "../hackrf-sys"}
 libc = ">= 0.2"
 log = ">= 0.3"
 quickcheck = ">= 0.4"
@@ -34,11 +34,11 @@ serde_derive = "1.0"
 serde_json = "1.0"
 
 [lib]
-name = "hackrf"
+name = "sdr_hackrf"
 path = "src/lib.rs"
 
 [[bin]]
-name = "hackrf"
+name = "sdr_hackrf"
 doc = false
 path = "src/main.rs"
 
