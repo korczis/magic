@@ -243,6 +243,7 @@ impl Default for DeviceList {
 impl Drop for DeviceList {
     fn drop(&mut self) {
         unsafe {
+            println!("Test");
             Wrapper::hackrf_device_list_free(self.list);
         }
     }

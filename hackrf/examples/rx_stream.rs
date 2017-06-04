@@ -24,7 +24,8 @@ fn main() {
     };
 
     let handle = thread::spawn(move || {
-        let mut devices = HackRF::device_list();
+        let mut devices = Box::new(HackRF::device_list());
+
         if devices.len() < 1 {
             println!("No compatible devices found. Exiting.");
             return;
@@ -41,7 +42,6 @@ fn main() {
             println!("Unable to set_frequency(), reason: {:?}", err);
             return;
         }
-
 
         unsafe extern "C" fn rx_callback(transfer: *mut hackrf_sys::Transfer) -> c_int {
             debug!("{:?}", *transfer);
