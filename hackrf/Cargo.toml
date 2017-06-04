@@ -24,7 +24,7 @@ license = "MIT"
 afl = ">= 0.1.5"
 clap = ">= 2.18"
 env_logger = ">= 0.4"
-sdr_hackrf_sys = { path = "../hackrf-sys"}
+sdr-hackrf-sys = { path = "../hackrf-sys"}
 libc = ">= 0.2"
 log = ">= 0.3"
 quickcheck = ">= 0.4"

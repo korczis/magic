@@ -1,3 +1,3 @@
-#[link(name = "hackrf")]
+#[link(name = "rtlsdr")]
 extern "C" {
 }

@@ -1,5 +1,5 @@
 [package]
-name = "sdr_hackrf_sys"
+name = "sdr-hackrf-sys"
 version = "0.1.0"
 authors = ["Tomas Korcak <korczis@gmail.com>"]
 

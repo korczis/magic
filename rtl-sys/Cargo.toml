@@ -1,5 +1,5 @@
 [package]
-name = "sdr_trl_sys"
+name = "sdr-rtl-sys"
 version = "0.1.0"
 authors = ["Tomas Korcak <korczis@gmail.com>"]
 

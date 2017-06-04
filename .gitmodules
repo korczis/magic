@@ -1,6 +1,6 @@
-[submodule "external/hackrf-raw"]
-	path = external/hackrf-raw
-	url = https://github.com/mossmann/hackrf.git
 [submodule "external/rtl-sdr"]
 	path = external/rtl-sdr
 	url = https://github.com/osmocom/rtl-sdr
+[submodule "external/hackrf"]
+	path = external/hackrf
+	url = https://github.com/mossmann/hackrf.git
