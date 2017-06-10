@@ -34,4 +34,79 @@ impl Wrapper {
         debug!("rtlsdr_close({:?})", dev);
         sdr_rtl_sys::rtlsdr_close(dev)
     }
+
+    pub unsafe fn rtlsdr_set_xtal_freq(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, rtl_freq: u32, tuner_freq: u32) -> i32 {
+        debug!("rtlsdr_set_xtal_freq({:?}, {:?}, {:?})", dev, rtl_freq, tuner_freq);
+        sdr_rtl_sys::rtlsdr_set_xtal_freq(dev, rtl_freq, tuner_freq)
+    }
+
+    pub unsafe fn rtlsdr_get_xtal_freq(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, rtl_freq: *mut u32, tuner_freq: *mut u32) -> i32 {
+        debug!("rtlsdr_get_xtal_freq({:?}, {:?}, {:?})", dev, rtl_freq, tuner_freq);
+        sdr_rtl_sys::rtlsdr_get_xtal_freq(dev, rtl_freq, tuner_freq)
+    }
+
+    pub unsafe fn rtlsdr_get_usb_strings(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, manufact: *mut c_char, product: *mut c_char, serial: *mut c_char) -> i32 {
+        debug!("rtlsdr_get_usb_strings({:?}, {:?}, {:?}, {:?})", dev, manufact, product, serial);
+        sdr_rtl_sys::rtlsdr_get_usb_strings(dev, manufact, product, serial)
+    }
+
+    pub unsafe fn rtlsdr_set_center_freq(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, freq: u32) -> i32 {
+        debug!("rtlsdr_set_center_freq({:?}, {:?})", dev, freq);
+        sdr_rtl_sys::rtlsdr_set_center_freq(dev, freq)
+    }
+
+    pub unsafe fn rtlsdr_get_center_freq(dev: *mut sdr_rtl_sys::rtlsdr_dev_t) -> u32 {
+        debug!("rtlsdr_get_center_freq({:?})", dev);
+        sdr_rtl_sys::rtlsdr_get_center_freq(dev)
+    }
+
+    pub unsafe fn rtlsdr_set_freq_correction(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, ppm: i32) -> i32 {
+        debug!("rtlsdr_set_freq_correction({:?}, {:?})", dev, ppm);
+        sdr_rtl_sys::rtlsdr_set_freq_correction(dev, ppm)
+    }
+
+    pub unsafe fn rtlsdr_get_freq_correction(dev: *mut sdr_rtl_sys::rtlsdr_dev_t) -> i32 {
+        debug!("rtlsdr_get_freq_correction({:?})", dev);
+        sdr_rtl_sys::rtlsdr_get_freq_correction(dev)
+    }
+
+    pub unsafe fn rtlsdr_get_tuner_type(dev: *mut sdr_rtl_sys::rtlsdr_dev_t) -> sdr_rtl_sys::TunerType {
+        debug!("rtlsdr_get_tuner_type({:?})", dev);
+        sdr_rtl_sys::rtlsdr_get_tuner_type(dev)
+    }
+
+    pub unsafe fn rtlsdr_get_tuner_gains(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, gains: *mut i32) -> i32 {
+        debug!("rtlsdr_get_tuner_gains({:?}, {:?})", dev, gains);
+        sdr_rtl_sys::rtlsdr_get_tuner_gains(dev, gains)
+    }
+
+    pub unsafe fn rtlsdr_set_tuner_gain(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, gain: i32) -> i32 {
+        debug!("rtlsdr_set_tuner_gain({:?}, {:?})", dev, gain);
+        sdr_rtl_sys::rtlsdr_set_tuner_gain(dev, gain)
+    }
+
+    pub unsafe fn rtlsdr_get_tuner_gain(dev: *mut sdr_rtl_sys::rtlsdr_dev_t) -> i32 {
+        debug!("rtlsdr_get_tuner_gain({:?})", dev);
+        sdr_rtl_sys::rtlsdr_get_tuner_gain(dev)
+    }
+
+    pub unsafe fn rtlsdr_set_tuner_if_gain(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, stage: i32, gain: i32) -> i32 {
+        debug!("rtlsdr_set_tuner_if_gain({:?}, {:?}, {:?})", dev, stage, gain);
+        sdr_rtl_sys::rtlsdr_set_tuner_if_gain(dev, stage, gain)
+    }
+
+    pub unsafe fn rtlsdr_set_tuner_gain_mode(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, manual: i32) -> i32 {
+        debug!("rtlsdr_set_tuner_gain_mode({:?}, {:?})", dev, manual);
+        sdr_rtl_sys::rtlsdr_set_tuner_gain_mode(dev, manual)
+    }
+
+    pub unsafe fn rtlsdr_set_sample_rate(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, rate: u32) -> i32 {
+        debug!("rtlsdr_set_sample_rate({:?}, {:?})", dev, rate);
+        sdr_rtl_sys::rtlsdr_set_sample_rate(dev, rate)
+    }
+
+    pub unsafe fn rtlsdr_get_sample_rate(dev: *mut sdr_rtl_sys::rtlsdr_dev_t) -> u32 {
+        debug!("rtlsdr_get_sample_rate({:?})", dev);
+        sdr_rtl_sys::rtlsdr_get_sample_rate(dev)
+    }
 }

@@ -10,6 +10,8 @@ defmodule SdrTest do
     |> hd
     |> :filename.rootname
 
+    IO.puts path
+
     :ok = :erlang.load_nif(path, 0)
 
 #    IO.inspect add(5, 2)

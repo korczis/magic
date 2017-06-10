@@ -2,7 +2,7 @@
 name = "sdr-rustler"
 version = "0.1.0"
 authors = []
-build = "src/build.rs"
+# build = "src/build.rs"
 
 [lib]
 name = "sdr"

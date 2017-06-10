@@ -43,7 +43,7 @@ pub fn main() {
     env_logger::init().unwrap();
 
     if matches.is_present("info") {
-        command::info::main(&matches.subcommand_matches("info").unwrap());
+        command::info::main(matches.subcommand_matches("info").unwrap());
     }
 
     if matches.is_present("list") {
