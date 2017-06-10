@@ -4,7 +4,8 @@ members = [
     "hackrf-sys",
     "rtl",
     "rtl-sys",
-    "sdr"
+    "sdr",
+    "sdr-rustler"
 ]
 
 # Debug settings

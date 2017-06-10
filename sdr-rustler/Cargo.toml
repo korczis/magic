@@ -1,0 +1,16 @@
+[package]
+name = "sdr-rustler"
+version = "0.1.0"
+authors = []
+build = "src/build.rs"
+
+[lib]
+name = "sdr"
+path = "src/lib.rs"
+crate-type = ["dylib"]
+
+[dependencies]
+sdr = { path = "../sdr"}
+rustler = "0.14.0"
+rustler_codegen = "0.14.0"
+lazy_static = "0.2"

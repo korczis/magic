@@ -20,6 +20,8 @@ keywords = ["rtl", "rtl-sdr", "sdr"]
 
 license = "MIT"
 
+build = "src/build.rs"
+
 [dependencies]
 serde = "1.0.8"
 serde_derive = "1.0.8"

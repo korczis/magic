@@ -5,3 +5,4 @@ authors = ["Tomas Korcak <korczis@gmail.com>"]
 
 [dependencies]
 sdr_hackrf = { path = "../hackrf"}
+sdr_rtl = { path = "../rtl"}

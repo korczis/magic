@@ -4,3 +4,6 @@
 [submodule "external/hackrf"]
 	path = external/hackrf
 	url = https://github.com/mossmann/hackrf.git
+[submodule "external/rustler"]
+	path = external/rustler
+	url = git@github.com:hansihe/rustler.git
