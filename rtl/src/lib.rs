@@ -158,6 +158,52 @@ impl Device {
             }
         }
     }
+
+    pub fn set_testmode(&mut self, on: i32) -> bool {
+        unsafe {
+            Wrapper::rtlsdr_set_testmode(self.handle, on) == 0
+        }
+    }
+
+    pub fn set_agc_mode(&mut self, on: i32) -> bool {
+        unsafe {
+            Wrapper::rtlsdr_set_agc_mode(self.handle, on) == 0
+        }
+    }
+
+    pub fn set_direct_sampling(&mut self, on: i32) -> bool {
+        unsafe {
+            Wrapper::rtlsdr_set_direct_sampling(self.handle, on) == 0
+        }
+    }
+
+    pub fn get_direct_sampling(&mut self) -> Option<sdr_rtl_sys::DirectSampling> {
+        unsafe {
+            sdr_rtl_sys::DirectSampling::from(Wrapper::rtlsdr_get_direct_sampling(self.handle))
+        }
+    }
+
+    pub fn set_offset_tuning(&mut self, on: i32) -> bool {
+        unsafe {
+            sdr_rtl_sys::rtlsdr_set_offset_tuning(self.handle, on) == 0
+        }
+    }
+
+    pub fn get_offset_tuning(&mut self) -> Option<bool> {
+        unsafe {
+            match Wrapper::rtlsdr_get_offset_tuning(self.handle) {
+                0 => Some(false),
+                1 => Some(true),
+                _ => None
+            }
+        }
+    }
+
+    pub fn reset_buffer(&mut self) -> bool {
+        unsafe {
+            Wrapper::rtlsdr_reset_buffer(self.handle) == 0
+        }
+    }
 }
 
 pub struct RTL {}

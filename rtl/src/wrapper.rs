@@ -109,4 +109,49 @@ impl Wrapper {
         debug!("rtlsdr_get_sample_rate({:?})", dev);
         sdr_rtl_sys::rtlsdr_get_sample_rate(dev)
     }
+
+    pub unsafe fn rtlsdr_set_testmode(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, on: i32) -> i32 {
+        debug!("rtlsdr_set_testmode({:?}, {:?})", dev, on);
+        sdr_rtl_sys::rtlsdr_set_testmode(dev, on)
+    }
+
+    pub unsafe fn rtlsdr_set_agc_mode(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, on: i32) -> i32 {
+        debug!("rtlsdr_set_agc_mode({:?}, {:?})", dev, on);
+        sdr_rtl_sys::rtlsdr_set_agc_mode(dev, on)
+    }
+
+    pub unsafe fn rtlsdr_set_direct_sampling(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, on: i32) -> i32 {
+        debug!("rtlsdr_set_direct_sampling({:?}, {:?})", dev, on);
+        sdr_rtl_sys::rtlsdr_set_direct_sampling(dev, on)
+    }
+
+    pub unsafe fn rtlsdr_get_direct_sampling(dev: *mut sdr_rtl_sys::rtlsdr_dev_t) -> i32 {
+        debug!("rtlsdr_get_direct_sampling({:?})", dev);
+        sdr_rtl_sys::rtlsdr_get_direct_sampling(dev)
+    }
+
+    pub unsafe fn  rtlsdr_set_offset_tuning(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, on: i32) -> i32 {
+        debug!("rtlsdr_set_offset_tuning({:?}, {:?})", dev, on);
+        sdr_rtl_sys::rtlsdr_set_offset_tuning(dev, on)
+    }
+
+    pub unsafe fn rtlsdr_get_offset_tuning(dev: *mut sdr_rtl_sys::rtlsdr_dev_t) -> i32 {
+        debug!("rtlsdr_get_offset_tuning({:?})", dev);
+        sdr_rtl_sys::rtlsdr_get_offset_tuning(dev)
+    }
+
+    pub unsafe fn rtlsdr_reset_buffer(dev: *mut sdr_rtl_sys::rtlsdr_dev_t) -> i32 {
+        debug!("rtlsdr_reset_buffer({:?})", dev);
+        sdr_rtl_sys::rtlsdr_reset_buffer(dev)
+    }
+
+    pub unsafe fn rtlsdr_read_sync(dev: *mut sdr_rtl_sys::rtlsdr_dev_t, buf: *mut c_char, len: i32, n_read: *mut i32) -> i32 {
+        debug!("rtlsdr_read_sync({:?}, {:?}, {:?}, {:?})", dev, buf, len, n_read);
+        sdr_rtl_sys::rtlsdr_read_sync(dev, buf, len, n_read)
+    }
+
+    pub unsafe fn rtlsdr_cancel_async(dev: *mut sdr_rtl_sys::rtlsdr_dev_t) -> i32 {
+        debug!("rtlsdr_cancel_async({:?})", dev);
+        sdr_rtl_sys::rtlsdr_cancel_async(dev)
+    }
 }

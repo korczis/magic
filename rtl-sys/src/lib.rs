@@ -14,6 +14,25 @@ pub enum TunerType {
     R828D
 }
 
+#[derive(Debug)]
+#[repr(C)]
+pub enum DirectSampling {
+    Disabled = 0,
+    I,
+    Q
+}
+
+impl DirectSampling {
+    pub fn from(val: i32) -> Option<DirectSampling> {
+        match val {
+            0 => Some(DirectSampling::Disabled),
+            1 => Some(DirectSampling::I),
+            2 => Some(DirectSampling::Q),
+            _ => None
+        }
+    }
+}
+
 #[link(name = "rtlsdr")]
 extern "C" {
     pub fn rtlsdr_get_device_count() -> u32;
@@ -49,4 +68,16 @@ extern "C" {
 
     pub fn rtlsdr_set_sample_rate(dev: *mut rtlsdr_dev_t, rate: u32) -> i32;
     pub fn rtlsdr_get_sample_rate(dev: *mut rtlsdr_dev_t) -> u32;
+
+    pub fn rtlsdr_set_testmode(dev: *mut rtlsdr_dev_t, on: i32) -> i32;
+    pub fn rtlsdr_set_agc_mode(dev: *mut rtlsdr_dev_t, on: i32) -> i32;
+    pub fn rtlsdr_set_direct_sampling(dev: *mut rtlsdr_dev_t, on: i32) -> i32;
+    pub fn rtlsdr_get_direct_sampling(dev: *mut rtlsdr_dev_t) -> i32;
+    pub fn rtlsdr_set_offset_tuning(dev: *mut rtlsdr_dev_t, on: i32) -> i32;
+    pub fn rtlsdr_get_offset_tuning(dev: *mut rtlsdr_dev_t) -> i32;
+
+    pub fn rtlsdr_reset_buffer(dev: *mut rtlsdr_dev_t) -> i32;
+    pub fn rtlsdr_read_sync(dev: *mut rtlsdr_dev_t, buf: *mut c_char, len: i32, n_read: *mut i32) -> i32;
+
+    pub fn rtlsdr_cancel_async(dev: *mut rtlsdr_dev_t) -> i32;
 }

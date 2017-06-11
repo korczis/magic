@@ -113,8 +113,9 @@ extern "C" {
     pub fn hackrf_set_sample_rate(device: *const Device, freq_hz: f64) -> Error;
 
     pub fn hackrf_start_rx(device: *mut Device, callback: SampleBlockCallback, rx_ctx: *mut c_void) -> Error;
-    pub fn hackrf_start_tx(device: *mut Device, callback: SampleBlockCallback, tx_ctx: *mut c_void) -> Error;
     pub fn hackrf_stop_rx(device: *mut Device) -> Error;
+
+    pub fn hackrf_start_tx(device: *mut Device, callback: SampleBlockCallback, tx_ctx: *mut c_void) -> Error;
     pub fn hackrf_stop_tx(device: *mut Device) -> Error;
 
     pub fn hackrf_usb_api_version_read(device: *const Device, version: *mut u16) -> Error;
