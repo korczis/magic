@@ -7,3 +7,6 @@
 [submodule "external/rustler"]
 	path = external/rustler
 	url = git@github.com:hansihe/rustler.git
+[submodule "external/libusb"]
+	path = external/libusb
+	url = https://github.com/libusb/libusb.git
