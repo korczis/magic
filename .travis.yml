@@ -10,6 +10,9 @@ before_script:
   - cd sdr-rustler
 
 before_install:
+  - pwd
+  - ls -la
+  - cd sdr-rustler
   - curl https://sh.rustup.rs -sSf | sh -s -- -y
   - export PATH=$HOME/.cargo/bin:$PATH
   - rustup update
