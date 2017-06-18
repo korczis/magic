@@ -6,8 +6,11 @@ cache:
   directories:
     - $HOME/.cargo
 
-before_script:
+install:
   - cd sdr-rustler
+  - mix local.rebar --force # for Elixir 1.3.0 and up
+  - mix local.hex --force
+  - mix deps.get
 
 before_install:
   - pwd
