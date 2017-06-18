@@ -1,10 +1,6 @@
 [workspace]
 members = [
-    "hackrf",
-    "hackrf-sys",
-    "rtl",
-    "rtl-sys",
-    "sdr"
+    "native/sdr"
 ]
 
 # Debug settings
