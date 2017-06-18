@@ -6,7 +6,11 @@ cache:
   directories:
     - $HOME/.cargo
 
+before_script:
+  - cd sdr-rustler
+
 before_install:
+  - cd sdr-rustler
   - curl https://sh.rustup.rs -sSf | sh -s -- -y
   - export PATH=$HOME/.cargo/bin:$PATH
   - rustup update
@@ -16,12 +20,6 @@ before_install:
   - rustup component add rust-src
   - export RUST_SRC_PATH=`rustc --print sysroot`/lib/rustlib/src/rust/src
   - export RUST_BACKTRACE=1
-
-install:
-  - cd sdr-rustler
-  - mix local.rebar --force # for Elixir 1.3.0 and up
-  - mix local.hex --force
-  - mix deps.get
 
 elixir:
   - 1.0.5
