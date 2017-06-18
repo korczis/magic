@@ -13,9 +13,8 @@ install:
   - mix deps.get
 
 before_install:
-  - curl https://sh.rustup.rs -sSf | sh -s -- -y
+  - curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly
   - export PATH=$HOME/.cargo/bin:$PATH
-  - rustup default nightly
   - rustup update
   - rustc -Vv
   - cargo -V
