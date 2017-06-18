@@ -258,7 +258,7 @@ impl RTL {
     pub fn get_index_by_serial(serial: String) -> Result<u32, Error> {
         unsafe {
             let serial = CString::new(serial).unwrap().as_ptr();
-            match Wrapper::rtlsdr_get_index_by_serial(serial as *const i8) {
+            match Wrapper::rtlsdr_get_index_by_serial(serial as *const _) {
                 -1 => Err(Error::EmptyName),
                 -2 => Err(Error::NoDevices),
                 -3 => Err(Error::NoSuchDevice),

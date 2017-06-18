@@ -1,5 +1,21 @@
 # hackrf-rust
 
+## Prerequisites
+
+### Languages
+
+- rust
+- elixir
+
+### Libraries (required)
+
+- libprotobuf-c-dev
+
+### Libraries (optional)
+
+- libhackrf
+- librtl
+
 ## Getting started
 
 ```
