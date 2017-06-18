@@ -7,15 +7,14 @@ cache:
     - $HOME/.cargo
 
 install:
+  - pwd
+  - ls -la
   - cd sdr-rustler
   - mix local.rebar --force # for Elixir 1.3.0 and up
   - mix local.hex --force
   - mix deps.get
 
 before_install:
-  - pwd
-  - ls -la
-  - cd sdr-rustler
   - curl https://sh.rustup.rs -sSf | sh -s -- -y
   - export PATH=$HOME/.cargo/bin:$PATH
   - rustup update
