@@ -1,6 +1,6 @@
-defmodule RustlerTest do
+defmodule Sdr do
   @moduledoc """
-  Documentation for RustlerTest.
+  Documentation for Sdr.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule RustlerTest do
 
   ## Examples
 
-      iex> RustlerTest.hello
+      iex> Sdr.hello
       :world
 
   """

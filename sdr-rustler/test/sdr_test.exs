@@ -1,6 +1,6 @@
-defmodule RustlerTestTest do
+defmodule SdrTest do
   use ExUnit.Case
-  doctest RustlerTest
+  doctest Sdr
 
   test "add" do
     assert Sdr.Native.add(1, 2) == {:ok, 3}
