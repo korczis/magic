@@ -1,0 +1,406 @@
+############### OpenCL Platform-Device Full Info ################
+
+Platform [0]:
+    Profile: FULL_PROFILE
+    Version: OpenCL 1.2 (Apr  4 2017 19:07:42)
+    Name: Apple
+    Vendor: Apple
+    Extensions: cl_APPLE_SetMemObjectDestructor cl_APPLE_ContextLoggingFunctions cl_APPLE_clut cl_APPLE_query_kernel_names cl_APPLE_gl_sharing cl_khr_gl_event
+
+Device [0]: 
+    Type: DEVICE_TYPE_CPU
+    VendorId: 4294967295
+    MaxComputeUnits: 4
+    MaxWorkItemDimensions: 3
+    MaxWorkGroupSize: 1024
+    MaxWorkItemSizes: [1024, 1, 1]
+    PreferredVectorWidthChar: 16
+    PreferredVectorWidthShort: 8
+    PreferredVectorWidthInt: 4
+    PreferredVectorWidthLong: 2
+    PreferredVectorWidthFloat: 4
+    PreferredVectorWidthDouble: 2
+    MaxClockFrequency: 2900
+    AddressBits: 64
+    MaxReadImageArgs: 128
+    MaxWriteImageArgs: 8
+    MaxMemAllocSize: 4294967296
+    Image2dMaxWidth: 8192
+    Image2dMaxHeight: 8192
+    Image3dMaxWidth: 2048
+    Image3dMaxHeight: 2048
+    Image3dMaxDepth: 2048
+    ImageSupport: true
+    MaxParameterSize: 4096
+    MaxSamplers: 16
+    MemBaseAddrAlign: 1024
+    MinDataTypeAlignSize: 128
+    SingleFpConfig: FP_DENORM | FP_INF_NAN | FP_ROUND_TO_NEAREST | FP_ROUND_TO_ZERO | FP_ROUND_TO_INF | FP_FMA | FP_CORRECTLY_ROUNDED_DIVIDE_SQRT
+    GlobalMemCacheType: ReadWriteCache
+    GlobalMemCachelineSize: 4194304
+    GlobalMemCacheSize: 64
+    GlobalMemSize: 17179869184
+    MaxConstantBufferSize: 65536
+    MaxConstantArgs: 8
+    LocalMemType: Global
+    LocalMemSize: 32768
+    ErrorCorrectionSupport: false
+    ProfilingTimerResolution: 1
+    EndianLittle: true
+    Available: true
+    CompilerAvailable: true
+    ExecutionCapabilities: EXEC_KERNEL | EXEC_NATIVE_KERNEL
+    QueueProperties: QUEUE_PROFILING_ENABLE
+    Name: Intel(R) Core(TM) i5-6267U CPU @ 2.90GHz
+    Vendor: Intel
+    DriverVersion: 1.1
+    Profile: FULL_PROFILE
+    Version: OpenCL 1.2 
+    Extensions: cl_APPLE_SetMemObjectDestructor cl_APPLE_ContextLoggingFunctions cl_APPLE_clut cl_APPLE_query_kernel_names cl_APPLE_gl_sharing cl_khr_gl_event cl_khr_fp64 cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_byte_addressable_store cl_khr_int64_base_atomics cl_khr_int64_extended_atomics cl_khr_3d_image_writes cl_khr_image2d_from_buffer cl_APPLE_fp64_basic_ops cl_APPLE_fixed_alpha_channel_orders cl_APPLE_biased_fixed_point_image_formats cl_APPLE_command_queue_priority
+    Platform: PlatformId(0x7fff0000)
+    DoubleFpConfig: FP_DENORM | FP_INF_NAN | FP_ROUND_TO_NEAREST | FP_ROUND_TO_ZERO | FP_ROUND_TO_INF | FP_FMA
+    HalfFpConfig: <unavailable (CL_INVALID_VALUE)>
+    PreferredVectorWidthHalf: 0
+    HostUnifiedMemory: true
+    NativeVectorWidthChar: 16
+    NativeVectorWidthShort: 8
+    NativeVectorWidthInt: 4
+    NativeVectorWidthLong: 2
+    NativeVectorWidthFloat: 4
+    NativeVectorWidthDouble: 2
+    NativeVectorWidthHalf: 0
+    OpenclCVersion: OpenCL C 1.2 
+    LinkerAvailable: true
+    BuiltInKernels: 
+    ImageMaxBufferSize: 65536
+    ImageMaxArraySize: 2048
+    ParentDevice: None
+    PartitionMaxSubDevices: 0
+    PartitionProperties: []
+    PartitionAffinityDomain: 
+    PartitionType: []
+    ReferenceCount: 1
+    PreferredInteropUserSync: true
+    PrintfBufferSize: 1048576
+    ImagePitchAlignment: 1
+    ImageBaseAddressAlignment: 1
+
+Context:
+    Reference Count: 8
+    Devices: [DeviceId(0xffffffff)]
+    Properties: ContextProperties({Platform: Platform(PlatformId(0x7fff0000))})
+    Device Count: 1
+
+Command Queue:
+    Context: Context(0x7f95ec801240)
+    Device: DeviceId(0xffffffff)
+    ReferenceCount: 6
+    Properties: QUEUE_PROFILING_ENABLE
+
+Buffer Memory:
+    Type: Buffer
+    Flags: MEM_READ_WRITE
+    Size: 4194304
+    HostPtr: mem info unavailable
+    MapCount: 0
+    ReferenceCount: 2
+    Context: Context(0x7f95ec801240)
+    AssociatedMemobject: None
+    Offset: 0
+
+Image: 
+    ElementSize: 4
+    RowPitch: 4096
+    SlicePitch: 0
+    Width: 1024
+    Height: 0
+    Depth: 0
+    ArraySize: 0
+    Buffer: None
+    NumMipLevels: 0
+    NumSamples: 0
+
+    Image Memory:
+        Type: Buffer
+        Flags: MEM_READ_WRITE
+        Size: 4194304
+        HostPtr: mem info unavailable
+        MapCount: 0
+        ReferenceCount: 2
+        Context: Context(0x7f95ec801240)
+        AssociatedMemobject: None
+        Offset: 0
+
+Sampler:
+    ReferenceCount: 1
+    Context: Context(0x7f95ec801240)
+    NormalizedCoords: false
+    AddressingMode: None
+    FilterMode: Nearest
+
+Program:
+    ReferenceCount: 2
+    Context: Context(0x7f95ec801240)
+    NumDevices: 1
+    Devices: [DeviceId(0xffffffff)]
+    Source: 
+
+
+    __kernel void multiply(float coeff, __global float* buffer) {
+        buffer[get_global_id(0)] *= coeff;
+    }
+
+    BinarySizes: [4396]
+    Binaries: n/a
+    NumKernels: 1
+    KernelNames: multiply
+
+Program Build:
+    BuildStatus: Success
+    BuildOptions: 
+    BuildLog: 
+
+
+
+    BinaryType: PROGRAM_BINARY_TYPE_EXECUTABLE
+
+Kernel Info:
+    FunctionName: multiply
+    NumArgs: 2
+    ReferenceCount: 1
+    Context: Context(0x7f95ec801240)
+    Program: Program(0x7f95ec8014f0)
+    Attributes: 
+
+Kernel Argument [0]:
+    AddressQualifier: Private
+    AccessQualifier: None
+    TypeName: kernel argument info unavailable
+    TypeQualifier: 
+    Name: kernel argument info unavailable
+
+Kernel Work Group:
+    WorkGroupSize: 128
+    CompileWorkGroupSize: [0, 0, 0]
+    LocalMemSize: 0
+    PreferredWorkGroupSizeMultiple: 1
+    PrivateMemSize: 0
+    GlobalWorkSize: only available for custom devices or built-in kernels
+
+Event:
+    CommandQueue: CommandQueue(0x7f95ea511460)
+    CommandType: WriteBuffer
+    ReferenceCount: 1
+    CommandExecutionStatus: Complete
+    Context: Context(0x7f95ec801240)
+
+Event Profiling:
+    Queued: 154882722508030
+    Submit: 154882722508030
+    Start: 154882722508160
+    End: 154882722508550
+
+
+############### OpenCL Platform-Device Full Info ################
+
+Platform [0]:
+    Profile: FULL_PROFILE
+    Version: OpenCL 1.2 (Apr  4 2017 19:07:42)
+    Name: Apple
+    Vendor: Apple
+    Extensions: cl_APPLE_SetMemObjectDestructor cl_APPLE_ContextLoggingFunctions cl_APPLE_clut cl_APPLE_query_kernel_names cl_APPLE_gl_sharing cl_khr_gl_event
+
+Device [1]: 
+    Type: DEVICE_TYPE_GPU
+    VendorId: 16925952
+    MaxComputeUnits: 48
+    MaxWorkItemDimensions: 3
+    MaxWorkGroupSize: 256
+    MaxWorkItemSizes: [256, 256, 256]
+    PreferredVectorWidthChar: 1
+    PreferredVectorWidthShort: 1
+    PreferredVectorWidthInt: 1
+    PreferredVectorWidthLong: 1
+    PreferredVectorWidthFloat: 1
+    PreferredVectorWidthDouble: 0
+    MaxClockFrequency: 1050
+    AddressBits: 64
+    MaxReadImageArgs: 128
+    MaxWriteImageArgs: 8
+    MaxMemAllocSize: 402653184
+    Image2dMaxWidth: 16384
+    Image2dMaxHeight: 16384
+    Image3dMaxWidth: 2048
+    Image3dMaxHeight: 2048
+    Image3dMaxDepth: 2048
+    ImageSupport: true
+    MaxParameterSize: 1024
+    MaxSamplers: 16
+    MemBaseAddrAlign: 1024
+    MinDataTypeAlignSize: 128
+    SingleFpConfig: FP_DENORM | FP_INF_NAN | FP_ROUND_TO_NEAREST | FP_ROUND_TO_ZERO | FP_ROUND_TO_INF | FP_FMA | FP_CORRECTLY_ROUNDED_DIVIDE_SQRT
+    GlobalMemCacheType: None
+    GlobalMemCachelineSize: 0
+    GlobalMemCacheSize: 0
+    GlobalMemSize: 1610612736
+    MaxConstantBufferSize: 65536
+    MaxConstantArgs: 8
+    LocalMemType: Local
+    LocalMemSize: 65536
+    ErrorCorrectionSupport: false
+    ProfilingTimerResolution: 80
+    EndianLittle: true
+    Available: true
+    CompilerAvailable: true
+    ExecutionCapabilities: EXEC_KERNEL
+    QueueProperties: QUEUE_PROFILING_ENABLE
+    Name: Intel(R) Iris(TM) Graphics 550
+    Vendor: Intel Inc.
+    DriverVersion: 1.2(Apr 22 2017 16:00:50)
+    Profile: FULL_PROFILE
+    Version: OpenCL 1.2 
+    Extensions: cl_APPLE_SetMemObjectDestructor cl_APPLE_ContextLoggingFunctions cl_APPLE_clut cl_APPLE_query_kernel_names cl_APPLE_gl_sharing cl_khr_gl_event cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_byte_addressable_store cl_khr_image2d_from_buffer cl_khr_gl_depth_images cl_khr_depth_images cl_khr_3d_image_writes 
+    Platform: PlatformId(0x7fff0000)
+    DoubleFpConfig: 
+    HalfFpConfig: <unavailable (CL_INVALID_OPERATION)>
+    PreferredVectorWidthHalf: 0
+    HostUnifiedMemory: true
+    NativeVectorWidthChar: 1
+    NativeVectorWidthShort: 1
+    NativeVectorWidthInt: 1
+    NativeVectorWidthLong: 1
+    NativeVectorWidthFloat: 1
+    NativeVectorWidthDouble: 0
+    NativeVectorWidthHalf: 0
+    OpenclCVersion: OpenCL C 1.2 
+    LinkerAvailable: true
+    BuiltInKernels: 
+    ImageMaxBufferSize: 25165824
+    ImageMaxArraySize: 2048
+    ParentDevice: None
+    PartitionMaxSubDevices: 0
+    PartitionProperties: []
+    PartitionAffinityDomain: 
+    PartitionType: []
+    ReferenceCount: 1
+    PreferredInteropUserSync: true
+    PrintfBufferSize: 1048576
+    ImagePitchAlignment: 32
+    ImageBaseAddressAlignment: 4
+
+Context:
+    Reference Count: 8
+    Devices: [DeviceId(0x1024500)]
+    Properties: ContextProperties({Platform: Platform(PlatformId(0x7fff0000))})
+    Device Count: 1
+
+Command Queue:
+    Context: Context(0x7f95ea511460)
+    Device: DeviceId(0x1024500)
+    ReferenceCount: 6
+    Properties: QUEUE_PROFILING_ENABLE
+
+Buffer Memory:
+    Type: Buffer
+    Flags: MEM_READ_WRITE
+    Size: 4194304
+    HostPtr: mem info unavailable
+    MapCount: 0
+    ReferenceCount: 2
+    Context: Context(0x7f95ea511460)
+    AssociatedMemobject: None
+    Offset: 0
+
+Image: 
+    ElementSize: 4
+    RowPitch: 4194304
+    SlicePitch: 0
+    Width: 1024
+    Height: 0
+    Depth: 0
+    ArraySize: 0
+    Buffer: None
+    NumMipLevels: 0
+    NumSamples: 0
+
+    Image Memory:
+        Type: Buffer
+        Flags: MEM_READ_WRITE
+        Size: 4194304
+        HostPtr: mem info unavailable
+        MapCount: 0
+        ReferenceCount: 2
+        Context: Context(0x7f95ea511460)
+        AssociatedMemobject: None
+        Offset: 0
+
+Sampler:
+    ReferenceCount: 1
+    Context: Context(0x7f95ea511460)
+    NormalizedCoords: false
+    AddressingMode: None
+    FilterMode: Nearest
+
+Program:
+    ReferenceCount: 2
+    Context: Context(0x7f95ea511460)
+    NumDevices: 1
+    Devices: [DeviceId(0x1024500)]
+    Source: 
+
+
+    __kernel void multiply(float coeff, __global float* buffer) {
+        buffer[get_global_id(0)] *= coeff;
+    }
+
+    BinarySizes: [1859]
+    Binaries: n/a
+    NumKernels: 1
+    KernelNames: multiply
+
+Program Build:
+    BuildStatus: Success
+    BuildOptions: 
+    BuildLog: 
+
+
+
+    BinaryType: PROGRAM_BINARY_TYPE_EXECUTABLE
+
+Kernel Info:
+    FunctionName: multiply
+    NumArgs: 2
+    ReferenceCount: 1
+    Context: Context(0x7f95ea511460)
+    Program: Program(0x7f95ea511730)
+    Attributes: 
+
+Kernel Argument [0]:
+    AddressQualifier: Private
+    AccessQualifier: None
+    TypeName: kernel argument info unavailable
+    TypeQualifier: 
+    Name: kernel argument info unavailable
+
+Kernel Work Group:
+    WorkGroupSize: 256
+    CompileWorkGroupSize: [0, 0, 0]
+    LocalMemSize: 0
+    PreferredWorkGroupSizeMultiple: 32
+    PrivateMemSize: 0
+    GlobalWorkSize: only available for custom devices or built-in kernels
+
+Event:
+    CommandQueue: CommandQueue(0x7f95ec801240)
+    CommandType: WriteBuffer
+    ReferenceCount: 1
+    CommandExecutionStatus: Complete
+    Context: Context(0x7f95ea511460)
+
+Event Profiling:
+    Queued: 4764050483120
+    Submit: 4764050501280
+    Start: 4764050731280
+    End: 4764050743200
+
+

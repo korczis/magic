@@ -1,0 +1,25 @@
+[package]
+name = "math"
+version = "0.1.0"
+authors = ["Tomas Korcak <korczis@gmail.com>"]
+
+[dependencies]
+clap = ">= 2.18"
+env_logger = ">= 0.4"
+glob = "0.2.11"
+log = ">= 0.3"
+nalgebra = "0.12.3"
+num = "0.1.39"
+ocl = "0.14.1"
+quickcheck = "0.4.1"
+quickcheck_macros = "0.4.2"
+time = "0.1.37"
+
+[lib]
+name = "math"
+path = "src/lib.rs"
+
+[[bin]]
+name = "math"
+doc = false
+path = "src/main.rs"

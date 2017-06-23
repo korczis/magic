@@ -13,3 +13,6 @@
 [submodule "external/liquid-dsp"]
 	path = external/liquid-dsp
 	url = https://github.com/jgaeddert/liquid-dsp.git
+[submodule "external/ocl"]
+	path = external/ocl
+	url = https://github.com/cogciprocate/ocl
