@@ -11,7 +11,7 @@ config :sdr_web, SdrWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: []
+  watchers: [npm: ["run", "watch"]]
 
 
 # Watch static and templates for browser reloading.
