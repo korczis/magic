@@ -21,3 +21,6 @@ erl_crash.dump
 
 # Node stuff
 /node_modules
+
+# Compiled assets
+/priv/static/assets
