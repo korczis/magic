@@ -5,12 +5,13 @@ import Bootstrap.Button as Button
 import Bootstrap.Form.Input as Input
 import Bootstrap.Grid as Grid
 import Bootstrap.Navbar as Navbar
-
 import FontAwesome.Web as Icon
-
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Route exposing (Route)
+
+
 
 -- MODEL
 
@@ -57,8 +58,9 @@ navbar model =
         |> Navbar.withAnimation
         |> Navbar.brand [ href "#"] [ text "MagicSense"]
         |> Navbar.items
-            [ Navbar.itemLink [ href "/map" ] [ text "Map"]
-            , Navbar.itemLink [ href "/item" ] [ text "Item 2"]
+            [ Navbar.itemLink [ href "/home" ] [ text "Home"]
+            , Navbar.itemLink [ href "/radios" ] [ text "Radios"]
+            , Navbar.itemLink [ href "/map" ] [ text "Map"]
             ]
         |> Navbar.customItems              -- Add custom items
             [ Navbar.formItem []
