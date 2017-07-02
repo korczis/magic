@@ -9,19 +9,12 @@
     <meta name="author" content="">
 
     <title>Hello SdrWeb!</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/tether.css") %>">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/tether-theme-basic.css") %>">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap.min.css") %>">
   </head>
 
   <body>
     <main role="main">
         <%= render @view_module, @view_template, assigns %>
     </main>
-    <script src="<%= static_path(@conn, "/js/tether.min.js") %>"></script>
-    <script src="<%= static_path(@conn, "/js/jquery-3.2.1.min.js") %>"></script>
-    <script src="<%= static_path(@conn, "/js/bootstrap.min.js") %>"></script>
     <script src="<%= static_path(@conn, "/assets/app.js") %>"></script>
   </body>
 </html>

@@ -7,11 +7,12 @@ var path = require('path');
 module.exports = {
     entry: [
         // "bootstrap-loader",
-        "./web/static/js/app.js"
+        "./web/static/js/app.js",
     ],
     output: {
         path: path.resolve(__dirname, "../priv/static/assets"),
-        filename: "app.js"
+        filename: "app.js",
+        publicPath: "/assets/"
     },
     resolve: {
         modules: [
@@ -25,7 +26,11 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader?importLoaders=1"
+                // loader: "style-loader!css-loader?importLoaders=1"
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
             },
             {
                 test: /\.jsx?$/,
@@ -86,5 +91,9 @@ module.exports = {
             Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
             Util: "exports-loader?Util!bootstrap/js/dist/util",
         })
+        // new webpack.optimize.UglifyJsPlugin({
+        //     minimize: true,
+        //     compress: true
+        // })
     ]
 };

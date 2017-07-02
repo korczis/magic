@@ -1,12 +1,16 @@
 module Application exposing (..)
 
+import Bootstrap.Alert as Alert
+import Bootstrap.Button as Button
+import Bootstrap.Form.Input as Input
+import Bootstrap.Grid as Grid
+import Bootstrap.Navbar as Navbar
+
+import FontAwesome.Web as Icon
+
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-
-import Bootstrap.Alert as Alert
-import Bootstrap.Grid as Grid
-import Bootstrap.Navbar as Navbar
 
 -- MODEL
 
@@ -51,10 +55,22 @@ navbar model =
     div []
     [ Navbar.config NavbarMsg
         |> Navbar.withAnimation
-        |> Navbar.brand [ href "#"] [ text "Brand"]
+        |> Navbar.brand [ href "#"] [ text "MagicSense"]
         |> Navbar.items
-            [ Navbar.itemLink [href "#"] [ text "Item 1"]
-            , Navbar.itemLink [href "#"] [ text "Item 2"]
+            [ Navbar.itemLink [ href "/map" ] [ text "Map"]
+            , Navbar.itemLink [ href "/item" ] [ text "Item 2"]
+            ]
+        |> Navbar.customItems              -- Add custom items
+            [ Navbar.formItem []
+                [ Input.text [ Input.attrs <| [ placeholder "enter" ] ]
+                , Button.button
+                    [ Button.success
+                    , Button.attrs [ class "ml-sm-2"]
+                    ]
+                    [ text "Search"]
+                ]
+                , Navbar.textItem [ class "muted ml-sm-2" ] [ text "Sign in"]
+                , Navbar.textItem [ class "muted ml-sm-2" ] [ text "Sign up"]
             ]
         |> Navbar.view model.navbarState
     ]
