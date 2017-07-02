@@ -13,6 +13,12 @@ defmodule SdrWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api/v1", as: :api_v1, alias: SdrWeb.API.V1 do
+    pipe_through :api
+
+    get "/news/test", NewsController, :test
+    end
+
   scope "/", SdrWeb do
     pipe_through :browser # Use the default browser stack
 
