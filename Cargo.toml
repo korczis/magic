@@ -2,7 +2,8 @@
 members = [
     "hackrf",
     "hackrf-sys",
-    "math",
+    "math-rust",
+    "math-rustler",
     "rtl",
     "rtl-sys",
     "sdr",

@@ -16,8 +16,12 @@ defmodule SdrWeb.Router do
   scope "/api/v1", as: :api_v1, alias: SdrWeb.API.V1 do
     pipe_through :api
 
+    post "/math/calculate", MathController, :calculate
+
     get "/news/test", NewsController, :test
-    end
+
+    get "/sdr/list", SdrController, :list
+  end
 
   scope "/", SdrWeb do
     pipe_through :browser # Use the default browser stack
