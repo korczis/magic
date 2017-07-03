@@ -2,9 +2,9 @@
 
 use num::*;
 
-// use super::core::*;
+use super::generic::Mathematics;
 
-pub fn add<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
+pub fn vec_add<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
     assert!(a.len() == b.len());
 
     let mut res = Vec::with_capacity(a.len());
@@ -16,7 +16,7 @@ pub fn add<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
     res
 }
 
-pub fn div<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
+pub fn vec_div<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
     assert!(a.len() == b.len());
 
     let mut res = Vec::with_capacity(a.len());
@@ -28,7 +28,7 @@ pub fn div<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
     res
 }
 
-pub fn mul<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
+pub fn vec_mul<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
     assert!(a.len() == b.len());
 
     let mut res = Vec::with_capacity(a.len());
@@ -40,7 +40,7 @@ pub fn mul<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
     res
 }
 
-pub fn sub<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
+pub fn vec_sub<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
     assert!(a.len() == b.len());
 
     let mut res = Vec::with_capacity(a.len());
@@ -52,47 +52,105 @@ pub fn sub<T: Float>(a: &[T], b: &[T]) -> Vec<T> {
     res
 }
 
+pub struct Device {
+
+}
+
+impl Device {
+    pub fn new() -> Device {
+        Device {
+        }
+    }
+}
+
+impl Mathematics for Device {
+    fn vec_add(&self, a: &[f32], b: &[f32]) -> Vec<f32> {
+        vec_add(a, b)
+    }
+
+    fn vec_div(&self, a: &[f32], b: &[f32]) -> Vec<f32> {
+        vec_div(a, b)
+    }
+
+    fn vec_mul(&self, a: &[f32], b: &[f32]) -> Vec<f32> {
+        vec_mul(a, b)
+    }
+
+    fn vec_sub(&self, a: &[f32], b: &[f32]) -> Vec<f32> {
+        vec_sub(a, b)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use test::Bencher;
+    use generic::Mathematics;
+
+    const DIM: usize = 1 << 16;
+    const A: [f32; DIM] = [1f32; DIM];
+    const B: [f32; DIM] = [2f32; DIM];
+
+    #[test]
+    fn device_vec_add() {
+        let device = super::Device::new();
+
+        let _ = device.vec_add(&A, &B);
+    }
+
+    #[test]
+    fn device_vec_div() {
+        let device = super::Device::new();
+
+        let _ = device.vec_div(&A, &B);
+    }
+
+    #[test]
+    fn device_vec_mul() {
+        let device = super::Device::new();
+
+        let _ = device.vec_mul(&A, &B);
+    }
+
+    #[test]
+    fn device_vec_sub() {
+        let device = super::Device::new();
+
+        let _ = device.vec_sub(&A, &B);
+    }
 
     #[bench]
-    fn bench_add(bencher: &mut Bencher) {
-        let a = [0f32; 1024];
-        let b = [10f32; 1024];
+    fn bench_device_vec_add(bencher: &mut Bencher) {
+        let device = super::Device::new();
 
         bencher.iter(|| {
-            let _c = super::add(&a, &b);
+            let _c = device.vec_add(&A, &B);
         });
     }
 
     #[bench]
-    fn bench_div(bencher: &mut Bencher) {
-        let a = [0f32; 1024];
-        let b = [10f32; 1024];
+    fn bench_device_vec_div(bencher: &mut Bencher) {
+        let device = super::Device::new();
 
         bencher.iter(|| {
-            let _c = super::div(&a, &b);
+            let _c = device.vec_div(&A, &B);
         });
     }
 
     #[bench]
-    fn bench_mul(bencher: &mut Bencher) {
-        let a = [0f32; 1024];
-        let b = [10f32; 1024];
+    fn bench_device_vec_mul(bencher: &mut Bencher) {
+        let device = super::Device::new();
 
         bencher.iter(|| {
-            let _c = super::mul(&a, &b);
+            let _c = device.vec_mul(&A, &B);
         });
     }
 
     #[bench]
-    fn bench_sub(bencher: &mut Bencher) {
-        let a = [0f32; 1024];
-        let b = [10f32; 1024];
+    fn bench_device_vec_sub(bencher: &mut Bencher) {
+        let device = super::Device::new();
 
         bencher.iter(|| {
-            let _c = super::sub(&a, &b);
+            let _c = device.vec_sub(&A, &B);
         });
     }
 }
