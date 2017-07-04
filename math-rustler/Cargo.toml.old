@@ -1,14 +1,6 @@
 [workspace]
 members = [
-    "hackrf",
-    "hackrf-sys",
-    "math-rust",
-    "math-rustler/native/math",
-    "playground-rust",
-    "rtl",
-    "rtl-sys",
-    "sdr",
-    "sdr-shared"
+    "native/math"
 ]
 
 # Debug settings
@@ -25,9 +17,9 @@ panic = 'unwind'   # panic strategy (`-C panic=...`), can also be 'abort'
 # Release settings
 [profile.release]
 opt-level = 3
-debug = true
+debug = false
 rpath = false
-lto = false
+lto = true
 debug-assertions = false
 codegen-units = 1
 panic = 'unwind'

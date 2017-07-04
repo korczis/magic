@@ -86,7 +86,7 @@ mod tests {
     use test::Bencher;
     use generic::Mathematics;
 
-    const DIM: usize = 1 << 16;
+    const DIM: usize = 1 << 8;
     const A: [f32; DIM] = [1f32; DIM];
     const B: [f32; DIM] = [2f32; DIM];
 
