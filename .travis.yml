@@ -3,7 +3,16 @@ language: elixir
 sudo: false
 
 os:
+  - linux
   - osx
+
+compiler:
+  - gcc
+  - clang
+
+matrix:
+  allow_failures:
+    - os: osx
 
 cache:
   directories:
@@ -18,6 +27,8 @@ install:
   - mix deps.get
 
 before_install:
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install graphviz; fi
   - curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly
   - export PATH=$HOME/.cargo/bin:$PATH
   - rustup update
