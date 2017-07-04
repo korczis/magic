@@ -7,6 +7,8 @@ cache:
     - $HOME/.cargo
 
 install:
+  - cargo build --all
+  - cargo build --all --release
   - cd sdr-rustler
   - mix local.rebar --force # for Elixir 1.3.0 and up
   - mix local.hex --force
