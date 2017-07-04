@@ -1,6 +1,6 @@
 language: elixir
 
-sudo: false
+sudo: true
 
 cache:
   directories:
@@ -15,6 +15,7 @@ install:
   - mix deps.get
 
 before_install:
+  - sudo apt-get install ocl-icd-opencl-dev
   - curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly
   - export PATH=$HOME/.cargo/bin:$PATH
   - rustup update
