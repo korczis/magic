@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Route exposing (..)
 
 import Html exposing (Attribute)
 import Html.Attributes as Attr

@@ -5,37 +5,45 @@ import Bootstrap.Button as Button
 import Bootstrap.Form.Input as Input
 import Bootstrap.Grid as Grid
 import Bootstrap.Navbar as Navbar
+
 import FontAwesome.Web as Icon
+
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+
+import Json.Decode as Decode exposing (Value)
+
+import Data.Session as Session
 import Navigation
 import Page.Home
-
 import Msg
-
--- MODEL
-
-type alias Model =
-    { history : List Navigation.Location
-    , navbarState : Navbar.State
-    , counter : Int
-    }
-
+import Model exposing (Model)
+import Page
 
 
 -- INIT
 
-init : Navigation.Location -> ( Model, Cmd Msg.Msg )
-init location =
+
+init :  Value -> Navigation.Location -> ( Model, Cmd Msg.Msg )
+init value location =
     let
-        ( navbarState, navbarCmd ) = Navbar.initialState Msg.NavbarMsg
+        ( navbarState, navbarCmd ) =
+            Navbar.initialState Msg.NavbarMsg
     in
-        ( { history = [ location ], counter = 0, navbarState = navbarState }, navbarCmd )
+        ( { history = [ location ]
+          , counter = 0
+          , navbar = navbarState
+          , page = Page.Loaded Page.initialPage
+          , session = Session.Session Nothing
+          }
+        , navbarCmd
+        )
 
 
 
 -- UPDATE
+
 
 update : Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
 update message model =
@@ -47,16 +55,19 @@ update message model =
             { model | counter = model.counter + 1 } ! []
 
         Msg.NavbarMsg state ->
-            { model | navbarState = state } ! []
+            { model | navbar = state } ! []
 
         Msg.UrlChange location ->
             ( { model | history = location :: model.history }
             , Cmd.none
             )
 
+        Msg.SetRoute _ ->
+            ( model, Cmd.none)
 
 
 -- VIEW
+
 
 navbar : Model -> Html Msg.Msg
 navbar model =
@@ -81,7 +92,7 @@ navbar model =
                 , Navbar.textItem [ class "muted ml-sm-2" ] [ text "Sign in" ]
                 , Navbar.textItem [ class "muted ml-sm-2" ] [ text "Sign up" ]
                 ]
-            |> Navbar.view model.navbarState
+            |> Navbar.view model.navbar
         ]
 
 
@@ -125,7 +136,7 @@ view model =
 
 subscriptions : Model -> Sub Msg.Msg
 subscriptions model =
-    Navbar.subscriptions model.navbarState Msg.NavbarMsg
+    Navbar.subscriptions model.navbar Msg.NavbarMsg
 
 
 viewLink : String -> Html msg

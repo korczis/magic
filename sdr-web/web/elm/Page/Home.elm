@@ -1,12 +1,7 @@
-module Page.Home exposing (..)
+module Page.Home exposing (Model)
 
 import Html exposing (..)
 
 
-type Msg
-    = None
-
-
-view : Html Msg
-view =
-    div [] [ text "Test" ]
+type alias Model =
+    {}
