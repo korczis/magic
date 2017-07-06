@@ -1,17 +1,18 @@
-module Main exposing (main)
+module Main exposing (..)
 
-import Html
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events exposing (..)
+import Navigation
+import TimeTravel.Navigation as TimeTravel
+
 import Application exposing (init, update, view, subscriptions)
-import TimeTravel.Html as TimeTravel
-
-root =
-    -- Html.program
-    TimeTravel.program
+import Msg
 
 main =
-    root
+    TimeTravel.program Msg.UrlChange
         { init = init
-        , update = update
         , view = view
+        , update = update
         , subscriptions = subscriptions
         }

@@ -10,7 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node_modules/webpack/bin/webpack.js --progress --color --config webpack/webpack.config.js",
-    "watch": "node_modules/webpack/bin/webpack.js --watch-stdin --progress --color --config webpack/webpack.config.js"
+    "watch": "node_modules/webpack/bin/webpack.js --watch-stdin --progress --color --config webpack/webpack.config.js",
+    "elm-format": "./node_modules/elm-format/bin/elm-format web/elm/"
   },
   "author": "",
   "license": "MIT",
@@ -21,9 +22,12 @@
     "bootstrap-sass": "^3.3.7",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
+    "elm-format": "^0.6.1-alpha",
     "elm-hot-loader": "^0.5.4",
+    "elm-test": "^0.18.7",
     "elm-webpack-loader": "^4.3.1",
     "exports-loader": "^0.6.4",
+    "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
     "imports-loader": "^0.7.1",
@@ -39,6 +43,7 @@
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
     "bootstrap-loader": "^2.1.0",
+    "elm-assets-loader": "^0.3.0",
     "font-awesome": "^4.7.0",
     "tether": "^1.4.0"
   }

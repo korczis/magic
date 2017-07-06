@@ -45,7 +45,7 @@ module.exports = {
                 exclude: [/elm-stuff/, /node_modules/],
                 use: [
                     'elm-hot-loader',
-                    'elm-webpack-loader?forceWatch=true',
+                    'elm-webpack-loader?forceWatch=true'
                 ]
             },
             {
