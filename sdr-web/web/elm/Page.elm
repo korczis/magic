@@ -6,7 +6,8 @@ import Page.Home
 type Page
     = Blank
     | NotFound
-    | Home Page.Home.Model
+    | Home -- Page.Home.Model
+    | Map
 
 
 type State
@@ -17,3 +18,12 @@ type State
 initialPage : Page
 initialPage =
     Blank
+
+getPage : State -> Page
+getPage pageState =
+    case pageState of
+        Loaded page ->
+            page
+
+        TransitioningFrom page ->
+            page

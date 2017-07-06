@@ -11,7 +11,9 @@ import Page
 
 type alias Model =
     { history : List Navigation.Location
-    , navbar : Navbar.State
+    , navbar : {
+        state: Navbar.State
+    }
     , counter : Int
     , page : Page.State
     , session: Session.Session

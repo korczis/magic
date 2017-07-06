@@ -8,12 +8,16 @@ import UrlParser as Url exposing ((</>), Parser, oneOf, parseHash, s, string)
 
 type Route
     = Home
+    | Map
+    | Radio
 
 
 route : Parser (Route -> a) a
 route =
     oneOf
-        [ Url.map Home (s "")
+        [ Url.map Home (s ""),
+          Url.map Map (s "map"),
+          Url.map Radio (s "radio")
         ]
 
 
@@ -24,8 +28,14 @@ routeToString page =
             case page of
                 Home ->
                     []
+
+                Map ->
+                    ["map"]
+
+                Radio ->
+                    ["radio"]
     in
-        "#/" ++ String.join "/" pieces
+        "#" ++ String.join "/" pieces
 
 
 
