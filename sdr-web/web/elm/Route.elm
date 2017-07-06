@@ -15,9 +15,9 @@ type Route
 route : Parser (Route -> a) a
 route =
     oneOf
-        [ Url.map Home (s ""),
-          Url.map Map (s "map"),
-          Url.map Radio (s "radio")
+        [ Url.map Home (s "")
+        , Url.map Map (s "map")
+        , Url.map Radio (s "radio")
         ]
 
 
@@ -30,10 +30,10 @@ routeToString page =
                     []
 
                 Map ->
-                    ["map"]
+                    [ "map" ]
 
                 Radio ->
-                    ["radio"]
+                    [ "radio" ]
     in
         "#" ++ String.join "/" pieces
 

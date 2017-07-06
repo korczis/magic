@@ -2,9 +2,9 @@ module Msg exposing (..)
 
 import Bootstrap.Navbar as Navbar
 import Navigation
-
 import Data.User as User
 import Route
+
 
 type Msg
     = Inc

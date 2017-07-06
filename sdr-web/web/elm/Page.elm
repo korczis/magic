@@ -19,6 +19,7 @@ initialPage : Page
 initialPage =
     Blank
 
+
 getPage : State -> Page
 getPage pageState =
     case pageState of

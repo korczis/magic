@@ -9,6 +9,7 @@ import Json.Encode.Extra as EncodeExtra
 import UrlParser
 import Util exposing ((=>))
 
+
 type alias User =
     { email : String
     , token : AuthToken
@@ -44,6 +45,7 @@ encode user =
         , "createdAt" => Encode.string user.createdAt
         , "updatedAt" => Encode.string user.updatedAt
         ]
+
 
 
 -- IDENTIFIERS --

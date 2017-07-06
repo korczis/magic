@@ -5,17 +5,12 @@ import Bootstrap.Button as Button
 import Bootstrap.Form.Input as Input
 import Bootstrap.Grid as Grid
 import Bootstrap.Navbar as Navbar
-
 import FontAwesome.Web as Icon
-
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-
 import Json.Decode as Decode exposing (Value)
-
 import Navigation
-
 import Data.Session as Session
 import Data.User as User
 import Msg
@@ -31,7 +26,7 @@ import Util exposing ((=>))
 -- INIT
 
 
-init :  Value -> Navigation.Location -> ( Model, Cmd Msg.Msg )
+init : Value -> Navigation.Location -> ( Model, Cmd Msg.Msg )
 init value location =
     let
         ( navbarState, navbarCmd ) =
@@ -39,48 +34,51 @@ init value location =
     in
         ( { history = [ location ]
           , counter = 0
-          , navbar = {
-            state = navbarState
-          }
+          , navbar =
+                { state = navbarState
+                }
           , page = Page.Loaded Page.initialPage
           , session = Session.Session Nothing
           }
-        , Cmd.batch [navbarCmd]
+        , Cmd.batch [ navbarCmd ]
         )
 
 
 
 -- UPDATE
 
+
 update : Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
 update msg model =
     updatePage (Page.getPage model.page) msg model
 
+
 updatePage : Page.Page -> Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
 updatePage page msg model =
     let
-            session =
-                model.session
+        session =
+            model.session
 
-            toPage toModel toMsg subUpdate subMsg subModel =
-                let
-                    ( newModel, newCmd ) =
-                        subUpdate subMsg subModel
-                in
+        toPage toModel toMsg subUpdate subMsg subModel =
+            let
+                ( newModel, newCmd ) =
+                    subUpdate subMsg subModel
+            in
                 ( { model | page = Page.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
 
-            -- errored =  pageErrored model
-        in
+        -- errored =  pageErrored model
+    in
         case ( msg, page ) of
             ( Msg.Dec, _ ) ->
                 { model | counter = model.counter - 1 } ! []
 
-            ( Msg.Inc, _) ->
+            ( Msg.Inc, _ ) ->
                 { model | counter = model.counter + 1 } ! []
 
             ( Msg.NavbarMsg state, _ ) ->
                 let
-                    modelNavbar = model.navbar
+                    modelNavbar =
+                        model.navbar
                 in
                     { model | navbar = { modelNavbar | state = state } } ! []
 
@@ -90,7 +88,7 @@ updatePage page msg model =
                 )
 
             ( Msg.SetRoute route, _ ) ->
-                ( model, Cmd.none)
+                ( { model | page = Page.Loaded Page.Home }, Cmd.none )
 
             ( Msg.SetUser user, _ ) ->
                 let
@@ -104,8 +102,10 @@ updatePage page msg model =
                         else
                             Cmd.none
                 in
-                { model | session = { session | user = user } }
-                    => cmd
+                    { model | session = { session | user = user } }
+                        => cmd
+
+
 
 -- VIEW
 
@@ -115,7 +115,19 @@ navbar model =
     div []
         [ Navbar.config Msg.NavbarMsg
             |> Navbar.withAnimation
-            |> Navbar.brand [ href "#" ] [ text "MagicSense" ]
+            |> Navbar.brand
+                [ href "#" ]
+                [ img
+                    [ src "images/eye.svg"
+                    , class "d-inline-block"
+                    , style
+                        [ ( "width", "30px" )
+                        , ( "margin-right", "15px" )
+                        ]
+                    ]
+                    []
+                , text "MagicSense"
+                ]
             |> Navbar.items
                 [ Navbar.itemLink [ href "/#/radio" ] [ text "Radio" ]
                 , Navbar.itemLink [ href "/#/map" ] [ text "Map" ]
@@ -161,11 +173,12 @@ mainContent model =
             [ text "+ 1" ]
         ]
 
+
 viewPage : Page.State -> Html Msg.Msg
 viewPage page =
     case page of
         Page.Loaded Page.Blank ->
-            div [] [text "Blank"]
+            div [] [ text "Blank" ]
 
         Page.Loaded Page.Home ->
             Page.Home.view
@@ -176,11 +189,13 @@ viewPage page =
         _ ->
             div [] []
 
+
 view : Model -> Html Msg.Msg
 view model =
     div []
         [ navbar model -- Interactive and responsive menu
         , viewPage model.page
+
         -- , mainContent model
         ]
 
@@ -195,6 +210,7 @@ subscriptions model =
         [ Navbar.subscriptions model.navbar.state Msg.NavbarMsg
         , Sub.map Msg.SetUser sessionChange
         ]
+
 
 sessionChange : Sub (Maybe User.User)
 sessionChange =
