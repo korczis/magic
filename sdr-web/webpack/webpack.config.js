@@ -44,6 +44,13 @@ module.exports = {
                 test: /\.elm$/,
                 exclude: [/elm-stuff/, /node_modules/],
                 use: [
+                    {
+                        loader: 'elm-assets-loader',
+                        options: {
+                            module: 'Assets',
+                            tagger: 'AssetPath'
+                        }
+                    },
                     'elm-hot-loader',
                     'elm-webpack-loader?forceWatch=true'
                 ]

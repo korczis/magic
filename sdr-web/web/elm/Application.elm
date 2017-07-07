@@ -11,6 +11,7 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode as Decode exposing (Value)
 import Navigation
+import Assets
 import Data.Session as Session
 import Data.User as User
 import Msg
@@ -116,9 +117,9 @@ navbar model =
         [ Navbar.config Msg.NavbarMsg
             |> Navbar.withAnimation
             |> Navbar.brand
-                [ href "#" ]
+                [ href "/#/" ]
                 [ img
-                    [ src "images/eye.svg"
+                    [ src (Assets.path <| Assets.star)
                     , class "d-inline-block"
                     , style
                         [ ( "width", "30px" )
