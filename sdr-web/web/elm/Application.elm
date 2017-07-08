@@ -34,16 +34,20 @@ init value location =
     let
         ( navbarState, navbarCmd ) =
             Navbar.initialState Msg.NavbarMsg
-    in
-        ( { history = [ location ]
-          , counter = 0
-          , navbar =
-                { state = navbarState
+        ( routeState, routeCmd ) =
+            setRoute (Route.fromLocation location)
+                { history = [ location ]
+                , counter = 0
+                , navbar =
+                    { state = navbarState
+                    }
+                , page = Page.Loaded Page.initialPage
+                , session = Session.Session Nothing
                 }
-          , page = Page.Loaded Page.initialPage
-          , session = Session.Session Nothing
-          }
-        , Cmd.batch [ navbarCmd ]
+    in
+
+        ( routeState
+        , Cmd.batch [ navbarCmd, routeCmd ]
         )
 
 
