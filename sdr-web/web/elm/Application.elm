@@ -19,6 +19,8 @@ import Model exposing (Model)
 import Page
 import Page.Home
 import Page.Map
+import Page.NotFound
+import Page.Radio
 import Ports
 import Route
 import Util exposing ((=>))
@@ -48,6 +50,33 @@ init value location =
 
 -- UPDATE
 
+setRoute : Maybe Route.Route -> Model -> ( Model, Cmd Msg.Msg )
+setRoute maybeRoute model =
+    let
+        session =
+            model.session
+
+        toPage toModel toMsg subUpdate subMsg subModel =
+            let
+                ( newModel, newCmd ) =
+                    subUpdate subMsg subModel
+            in
+            ( { model | page = Page.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
+
+        -- errored = pageErrored model
+    in
+   case maybeRoute of
+        Nothing ->
+            { model | page = Page.Loaded Page.NotFound } => Cmd.none
+
+        Just Route.Home ->
+            { model | page = Page.Loaded Page.Home } => Cmd.none
+
+        Just Route.Map ->
+            { model | page = Page.Loaded Page.Map } => Cmd.none
+
+        Just Route.Radio ->
+            { model | page = Page.Loaded Page.Radio } => Cmd.none
 
 update : Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
 update msg model =
@@ -89,7 +118,7 @@ updatePage page msg model =
                 )
 
             ( Msg.SetRoute route, _ ) ->
-                ( { model | page = Page.Loaded Page.Home }, Cmd.none )
+                setRoute route model
 
             ( Msg.SetUser user, _ ) ->
                 let
@@ -187,9 +216,14 @@ viewPage page =
         Page.Loaded Page.Map ->
             Page.Map.view
 
-        _ ->
-            div [] []
+        Page.Loaded Page.NotFound ->
+            Page.NotFound.view
 
+        Page.Loaded Page.Radio ->
+            Page.Radio.view
+
+        Page.TransitioningFrom _ ->
+            div [] []
 
 view : Model -> Html Msg.Msg
 view model =

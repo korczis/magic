@@ -8,6 +8,7 @@ type Page
     | NotFound
     | Home -- Page.Home.Model
     | Map
+    | Radio
 
 
 type State
